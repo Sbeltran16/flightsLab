@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations</title>
+</head>
+<body>
+    <nav>
+        <a href="/flights/new" <%- title === 'Add a Flight' ? 'class="active"' : '' %>>Add flight</a>
+        <a href="/flights/view" <%- title === 'All flights' ? 'class="active"' : '' %>>All flights</a> 
+    </nav>
+
+    <section id="flights-page">
+        <div>Airline: </div>
+        <div><%= flight.airline %> </div>
+        <div>Airport: </div>
+        <div><%= flight.airport %> </div>
+        <div>FlightsNo: </div>
+        <div><%= flight.flightNo %> </div>
+        <div>Date: </div>
+        <div><%= flight.departs %> </div>
+    </section>
+</body>
+</html>
