@@ -2,8 +2,8 @@ const Flight = require('../models/flight')
 
 
 function show(req, res){
-    Flight.findById(req.params.id, function(err, flightOne){
-        res.render("flights/show", {title: "All flights", flight: flightOne});
+    Flight.findById(req.params.id, function(err, flight){
+        res.render("flights/show", {title: "All flights", flight: flight});
     })
 }
 
@@ -25,9 +25,12 @@ function create(req, res){
     const flight = new Flight(req.body);
     flight.save(function(err){
         if (err) return res.render('flights/new',{title: "Add a Flight"});
-        res.redirect('/');
+        res.redirect(`/flights/${flight._id}`);
     })
 }
+
+
+
 
 
 
