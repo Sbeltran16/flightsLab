@@ -23,13 +23,6 @@
         <div><%= flight.departs %> </div>
     </section>
 
-    <section>
-        <form id="tickets" action="/flights/<%= flight._id %>/tickets" method="POST">
-
-        </form>
-    </section>
-
-
     <form id="destinations" method="POST" action="/flights/<%= flight._id %>/destinations">
         <h2>Add Destination:</h2>
         <label>Airport:
