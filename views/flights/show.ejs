@@ -11,20 +11,21 @@
         <a href="/flights/new" <%- title === 'Add a Flight' ? 'class="active"' : '' %>>Add flight</a>
         <a href="/flights/view" <%- title === 'All flights' ? 'class="active"' : '' %>>All flights</a> 
     </nav>
+    <h1>Flight Details</h1>
 
     <section id="flights-page">
         <div>Airline: </div>
-        <div><%= flight.airline %> </div>
+        <div><%= flights.airline %> </div>
         <div>Airport: </div>
-        <div><%= flight.airport %> </div>
+        <div><%= flights.airport %> </div>
         <div>FlightsNo: </div>
-        <div><%= flight.flightNo %> </div>
+        <div><%= flights.flightNo %> </div>
         <div>Date: </div>
-        <div><%= flight.departs %> </div>
+        <div><%= flights.departs %> </div>
     </section>
 
-    <form id="destinations" method="POST" action="/flights/<%= flight._id %>/destinations">
-        <h2>Add Destination:</h2>
+    <form id="destinations" method="POST" action="/flights/<%= flights._id %>/destinations">
+        <h3>Add Destination:</h3>
         <label>Airport:
             <select name="airport">
                 <option value ="DEN" selected>DEN</option>
@@ -38,28 +39,44 @@
             <input type="datetime-local" name="arrival">
         </label><br>
         <input type="submit" name="submit">
+
+        <h3>New Ticket:</h3>
+        <label>Add Ticket:
+            <td><a href="/flights/<%= flights._id %>/tickets/new">NEW TICKET</a></td>
+        </label><br>
     </form>
-    <% if (flight.destinations) { %>
-        <table>
-          <thead>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Airport</th>
+            <th>Arrival</th>
+        </tr>
+        </thead>
+
+        
+        <td><% flights.destinations.forEach(function(f){ %>
             <tr>
-              <th>Airport</th>
-              <th>Arrival</th>
+            <td><%= f.airport %></td>
+            <td><%= f.arrival %></td>
             </tr>
-          </thead>
-          <tbody>
-            <% flight.forEach(d => { %>
-              <tr>
-                <td><%= d.airport %></td>
-                <td><%= d.arrival %></td>
-              </tr>
-            <% }) %>
-          </tbody>
-        </table>
-        <% } else { %>
-            <h5>No Destinations Yet</h5>
-        <% } %>
+        <% }) %> </td>
+         
     
+    <h3>Overview:</h3>
+    <table>
+        <tr>
+            <th>Seat:</th>
+            <th>Price:</th>
+        </tr>
+
+        <% tickets.forEach(function(t){ %>
+        <tr>
+            <td><%= t.seat %> </td>
+            <td><%= t.price %> </td>
+        </tr>
+       <% }) %>
+    </table>
     
 </body>
 </html>

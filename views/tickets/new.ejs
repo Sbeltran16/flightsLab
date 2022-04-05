@@ -7,12 +7,14 @@
     <title>New Ticket</title>
 </head>
 <body>
-    <form id="newTicket" action="/flights/<%= f._id %>/tickets/new" method="POST">
+    <form id="newTicket" action="/flights/<%= flights._id %>/tickets/new" method="POST">
         <h5>Add New Ticket:</h5>
         <label>Seat:</label>
         <input name="seat" required pattern="[A-F][1-9]\d?">
         <label>Price:</label>
         <input type="Number" name="price">
+        <label>Submit</label>
+        <input type="submit" name="enter">
     </form>
 </body>
 </html>

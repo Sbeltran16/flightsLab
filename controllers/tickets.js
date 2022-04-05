@@ -4,16 +4,22 @@ const Ticket = require('../models/ticket');
 
 
 function newTicket(req, res){
-        res.render('tickets/new') 
-        
+    Flight.findById(req.params.id, function(err, flights){
+        res.render('tickets/new',{
+            flights,
+            title: 'Add New Ticket'
+        })
+    })  
 }
 
 
 function create(req, res){
-    Ticket.findById(req.params.id, function(err, tickets){
-        res.render('tickets/new');
-    });
-    res.redirect('/flights/:id')
+   Flight.findById(req.params.id, function(err, flights){
+       req.body.flight = flights._id;
+       Ticket.create(req.body, function(err, ticket){
+           res.redirect(`/flights/${flights._id}`);
+       })
+   })
 
 }
 
