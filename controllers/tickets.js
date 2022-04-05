@@ -1,8 +1,11 @@
+const req = require('express/lib/request');
 const Flight = require('../models/flight');
 const Ticket = require('../models/ticket');
 
-module.exports = {
-    create
+
+function newTicket(req, res){
+        res.render('tickets/new') 
+        
 }
 
 
@@ -11,5 +14,11 @@ function create(req, res){
         res.render('tickets/new');
     });
     res.redirect('/flights/:id')
+
+}
+
+module.exports = {
+    new: newTicket,
+    create
 
 }
