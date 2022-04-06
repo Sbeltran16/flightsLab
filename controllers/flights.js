@@ -5,7 +5,8 @@ module.exports = {
     new: newFlight,
     index,
     create,
-    show
+    show,
+    delete: deleteFlight
 }
 
 function newFlight(req, res){
@@ -22,7 +23,6 @@ function index(req, res) {
 }
 
 function create(req, res){
-
     const flight = new Flight(req.body);
     flight.save(function(err){
         if (err) return res.render('flights/new',{title: "Add a Flight"});
@@ -32,7 +32,8 @@ function create(req, res){
 
 function show(req, res){
     Flight.findById(req.params.id, function(err, flights){
-        Tickets.find(flights._id, function(err,tickets){
+        Tickets.find({flight: flights._id}, function(err,tickets){
+            console.log(tickets)
             res.render('flights/show', {
                 flights,
                 tickets,
@@ -43,6 +44,10 @@ function show(req, res){
     })
 }
 
+function deleteFlight(req, res){
+    Flight.deleteOne(req.params.id)
+    res.redirect('/flights');
+}
 
 
 

@@ -15,5 +15,7 @@ router.get('/view', flightsCtrl.index)
 
 router.get('/:id', flightsCtrl.show);
 
+router.delete('/:id', flightsCtrl.delete);
+
 
 module.exports = router;

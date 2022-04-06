@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
     <title>New Ticket</title>
 </head>
 <body>
+    <nav>
+        <a href="/flights/new"<%- title === 'Add a Flight' ? 'class="active"' : '' %>>Add flights</a>
+        <a href="/flights/view"<%- title === 'All flights' ? 'class="active"' : '' %>>All flights</a> 
+    </nav>
+
     <form id="newTicket" action="/flights/<%= flights._id %>/tickets/new" method="POST">
         <h5>Add New Ticket:</h5>
         <label>Seat:</label>
@@ -14,7 +20,7 @@
         <label>Price:</label>
         <input type="Number" name="price">
         <label>Submit</label>
-        <input type="submit" name="enter">
+        <input type="submit">
     </form>
 </body>
 </html>
